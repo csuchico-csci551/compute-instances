@@ -1,0 +1,6 @@
+---
+plugin: gcp_compute
+projects:
+  - graphite-playground
+auth_kind: serviceaccount
+service_account_file: /home/alexstephen/my_account.json
