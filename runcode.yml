@@ -1,0 +1,29 @@
+---
+- name: Run code
+  hosts: gce_instances_ips
+  gather_facts: False
+  vars_files:
+    - gce_vars/auth
+    - gce_vars/zone
+  tasks:
+    - name: Update repositories cache and install "build-essential" package
+      apt:
+        name: build-essential
+        update_cache: yes
+      become: yes
+    - name: Copy code over to GCP instance
+      copy:
+        src: ./test
+        dest: ~/
+    - name: Build 'hello' target in Makefile
+      make:
+        chdir: ~/test
+        target: hello
+      register: result
+    - debug: var=result.stdout_lines
+    - name: Run hello executable from make success
+      shell: ./hello
+      args:
+        chdir: ~/test
+      register: result
+    - debug: var=result.stdout_lines
