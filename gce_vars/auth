@@ -1,6 +1,7 @@
 ---
 # Google Compute Engine required authentication global variables
 # (Replace 'YOUR_PROJECT_ID' with the Project ID used in creating your GCP project.)
+# (Replace 'YOUR_CREDENTIAL_FILE' with the path to the serviceaccount credentials_file created for your project.)
 project: cins465-spring2017
 credentials_file: ./CINS465-3fe49280f0fb.json
 auth_kind: serviceaccount
